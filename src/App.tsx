@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import PrivateRoute from "./components/utils/PrivateRoute";
 
 import AuthProvider from "./context/AuthContext";
+import QuestionProvider from "./context/QuestionContext";
 import UserProvider from "./context/UserContext";
 
 export default function App(): ReactElement {
@@ -13,9 +14,11 @@ export default function App(): ReactElement {
       <Router>
         <AuthProvider>
           <UserProvider>
-            <Switch>
-              <PrivateRoute path="/" component={Home} />
-            </Switch>
+            <QuestionProvider>
+              <Switch>
+                <PrivateRoute path="/" component={Home} />
+              </Switch>
+            </QuestionProvider>
           </UserProvider>
         </AuthProvider>
       </Router>

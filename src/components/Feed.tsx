@@ -1,10 +1,19 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 import "../styles/feed.scss";
 
 import { useAuth } from "../context/AuthContext";
+import { useQuestions } from "../context/QuestionContext";
+
+import Question from "./Question";
 
 export default function Feed({ openAddQuestion }): ReactElement {
   const { currentUser } = useAuth();
+
+  const { questions, fetchQuestions } = useQuestions();
+
+  useEffect(() => {
+    fetchQuestions();
+  }, []);
 
   return (
     <div className="feed">
@@ -15,8 +24,9 @@ export default function Feed({ openAddQuestion }): ReactElement {
         </h2>
         <aside>What is your question or link?</aside>
       </div>
-      <div className="test">d</div>
-      <div className="test">d</div>
+      {questions.map((ques) => (
+        <Question {...ques} />
+      ))}
     </div>
   );
 }

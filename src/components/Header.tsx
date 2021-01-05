@@ -17,7 +17,10 @@ export default function Header({ openAddQuestion }): ReactElement {
         position="bottom center"
       >
         <div className="user-dropdown">
-          <div className="user-dropdown__top"></div>
+          <div className="user-dropdown__top">
+            <img src={currentUser.photo} />
+            <h1>{currentUser.firstName + " " + currentUser.lastName}</h1>
+          </div>
         </div>
       </Popup>
       <button onClick={openAddQuestion}>Add Question</button>
